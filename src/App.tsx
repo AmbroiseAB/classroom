@@ -1,4 +1,4 @@
-import { GitHubBanner, Refine } from "@refinedev/core";
+import { Refine } from "@refinedev/core";
 import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
@@ -12,10 +12,14 @@ import { Toaster } from "./components/refine-ui/notification/toaster";
 import { useNotificationProvider } from "./components/refine-ui/notification/use-notification-provider";
 import { ThemeProvider } from "./components/refine-ui/theme/theme-provider";
 import Dashboard from "./pages/dashboard";
-import { BookOpen, Home } from "lucide-react";
+import {BookOpen, GraduationCap, Home} from "lucide-react";
 import { Layout } from "./components/refine-ui/layout/layout";
+
 import SubjectsList from "./pages/subjects/list";
 import SubjectsCreate from "./pages/subjects/create";
+
+import ClassesList from "./pages/classes/list";
+import ClassesCreate from "./pages/classes/create";
 import { dataProvider } from "./providers/data";
 
 function App() {
@@ -44,7 +48,13 @@ function App() {
                   list: '/subjects',
                   create: '/subjects/create',
                   meta: {label:'Subjects', icon:<BookOpen/>}
-                }
+                },
+                {
+                  name: 'classes',
+                  list: '/classes',
+                  create: '/classes/create',
+                  meta: {label:'classes', icon:<GraduationCap/>}
+                },
               ]}
             >
               <Routes>
@@ -54,11 +64,17 @@ function App() {
                   </Layout>
                 }>
                   <Route path="/" element={<Dashboard />} />
-                  <Route path="/subjects">
-                    <Route index element={<SubjectsList/>}/>
-                    <Route path="create" element={<SubjectsCreate/>}/>
-                  </Route>
-                </Route>               
+
+                    <Route path="/subjects">
+                      <Route index element={<SubjectsList/>}/>
+                      <Route path="create" element={<SubjectsCreate/>}/>
+                    </Route>
+
+                    <Route path="/classes">
+                      <Route index element={<ClassesList/>}/>
+                      <Route path="create" element={<ClassesCreate/>}/>
+                    </Route>
+                </Route>
               </Routes>
               <Toaster />
               <RefineKbar />
