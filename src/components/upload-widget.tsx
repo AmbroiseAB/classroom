@@ -65,7 +65,7 @@ const UploadWidget = ({value = null, onChange, disabled = false}) => {
     return (
         <div className="space-y-2">
             {preview ? (
-                <div className="upload-preview">
+                <div className="upload-preview" onClick={openWidget} role="button" tabIndex={0}>
                     <img src={preview.url} alt="Uploaded file"/>
                 </div>
             ): <div className="upload-dropzone" role="button" tabIndex={0}
